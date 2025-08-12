@@ -1,0 +1,132 @@
+:root{
+      --bg: #fff;
+      --text: #111;
+      --muted: #9aa3ac;
+      --line: #2b2b2b;
+      --gap: 32px;            /* spacing around the center line (desktop) */
+      --dot-size: 12px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body{
+      margin: 0;
+      font: 16px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, Inter, "Helvetica Neue", Arial;
+      color: var(--text);
+      background: var(--bg);
+    }
+
+    .wrap{
+      width: min(980px, 92%);
+      margin: 28px auto 96px;
+    }
+
+    h1{
+      margin: 8px 0 8px;
+      font-size: clamp(36px, 6vw, 56px);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      text-align: center;
+    }
+
+    .sub{
+      margin: 0 auto 20px;
+      text-align: center;
+      color: var(--muted);
+      max-width: 720px;
+    }
+
+    /* Timeline base */
+    .timeline{
+      position: relative;
+      list-style: none;
+      margin: 40px 0 0;
+      padding: 24px 0; /* gives some line above/below first/last dots */
+      --line-x: 50%;   /* center the vertical line on desktop */
+    }
+
+    /* Vertical line */
+    .timeline::before{
+      content: "";
+      position: absolute;
+      left: var(--line-x);
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: var(--line);
+      transform: translateX(-50%);
+    }
+
+    .timeline > li{
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 1fr;  /* left (date) | right (entry) */
+      align-items: center;
+      padding: 18px 0;
+    }
+
+    /* The dot for each entry */
+    .timeline > li::before{
+      content: "";
+      position: absolute;
+      left: var(--line-x);
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: var(--dot-size);
+      height: var(--dot-size);
+      background: #111;
+      border-radius: 50%;
+      box-shadow: 0 0 0 6px #fff; /* white ring around the dot */
+      z-index: 1;
+    }
+
+    .date{
+      color: var(--muted);
+      text-align: right;
+      padding-right: var(--gap);
+      white-space: nowrap;
+    }
+
+    .entry{
+      margin: 0;
+      font-weight: 600;
+      font-size: 18px;
+      color: #0f0f0f;
+      padding-left: var(--gap);
+    }
+
+    .cta{
+      margin-top: 36px;
+      text-align: center;
+    }
+    .btn{
+      display: inline-block;
+      background: #111;
+      color: #fff;
+      text-decoration: none;
+      padding: 13px 22px;
+      border-radius: 12px;
+      box-shadow: 0 10px 20px rgba(17,17,17,.12);
+    }
+    .btn:hover{ background:#000; }
+
+    /* Mobile: shift the line to the left and stack content */
+    @media (max-width: 700px){
+      :root{ --gap: 18px; }
+      .timeline{ --line-x: 14px; }
+      .timeline > li{
+        grid-template-columns: 1fr;
+        padding: 16px 0;
+      }
+      .date{
+        order: -1;
+        text-align: left;
+        margin-left: 28px;
+        padding-right: 0;
+        font-size: 14px;
+      }
+      .entry{
+        padding-left: 0;
+        margin-left: 28px; /* clears the line/dot */
+      }
+    }
