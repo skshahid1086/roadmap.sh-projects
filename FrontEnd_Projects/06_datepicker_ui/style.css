@@ -1,0 +1,46 @@
+ body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #f9f9f9;
+    }
+
+    .datepicker-wrapper {
+      position: relative; 
+      width: 250px;
+    }
+
+    input[type="date"] {
+      width: 100%;
+      box-sizing: border-box;
+      border: 2px solid #333;
+      border-radius: 2px;
+      padding: 10px;
+      font-family: inherit;
+      font-size: 16px;
+      -webkit-appearance: none; 
+      -moz-appearance: none;
+      appearance: none;
+    }
+
+    input[type="date"]:invalid {
+      color: transparent;
+    }
+
+    input[type="date"]:invalid::before {
+      content: 'dd / mm / yyyy';
+      position: absolute;
+      left: 12px; 
+      top: 50%;
+      transform: translateY(-50%);
+      color: #888;
+      pointer-events: none; 
+    }
+
+    input[type="date"]::-webkit-calendar-picker-indicator {
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line><rect x="7" y="14" width="2" height="2"></rect><rect x="12" y="14" width="2" height="2"></rect><rect x="17" y="14" width="2" height="2"></rect></svg>');
+      background-size: contain;
+      cursor: pointer;
+    }
